@@ -56,9 +56,10 @@ def ProcessFile(filename, root_dir, authcode):
     output_path = os.path.join(output_dir, output_name)
 
     print 'Duration: %s' % str(datetime.timedelta(seconds=duration))
+    print 'Processing %s' % output_path 
 
     cmd = ['ffmpeg', '-v', 'error', '-stats', '-activation_bytes', authcode, '-i', filename, '-id3v2_version', '3', '-vn', '-c:a', 'libmp3lame', '-ab', bitrate, output_path]
-    #subprocess.call(cmd)
+    subprocess.call(cmd)
 
     for chapter in chapters:
         track = 'track="%s"' % chapter[0]
